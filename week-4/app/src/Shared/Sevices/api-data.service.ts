@@ -22,6 +22,10 @@ export class ApiDataService {
     return this.http.get(`${baseUrl}/get-movies`);
   }
 
+  pullOneMovie(incomingData) {
+    return this.http.post(`${baseUrl}/get-one-movie`, incomingData);
+  }
+
   // Populate the observable to have a reference of all movies
   getAllMovies() {
     this.pullMovies().subscribe((data: any) => {

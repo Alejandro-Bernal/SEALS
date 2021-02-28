@@ -1,2 +1,11 @@
 <h1>Welcome!</h1>
-<div>
+<ul *ngFor="let movie of movieList">
+  <li>{{movie.title}}</li>
+</ul>
+
+<!--Post Request-->
+<form [formGroup]="inputGroup" (ngSubmit)="onFormSubmit()">
+  <label for="input">Movie</label>
+  <input type="text" placeholder="movie" formControlName="id" />
+  <button type="submit"> Post </button>
+</form>
