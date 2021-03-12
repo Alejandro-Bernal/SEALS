@@ -101,8 +101,20 @@ server.post('/remove-by-id', (req, res) => {
 });
 
 server.post('/update-journal', (req, res) => {
-    Journal.findByIdAndUpdate({}, () => {
+    const incomingData = req.body;
+    Journal.findByIdAndUpdate({ _id: incomingData._id }, { content: incomingData.content }, (err, doc) => {
+        if (err) {
+            res.status(500).send({
+                status: 500,
+                msg: 'Error: Could not find journal'
+            })
+        }
 
+        res.status(200).send({
+            status: 200,
+            msg: 'Updated journal',
+            document: doc
+        })
     })
 });
 
